@@ -64,12 +64,12 @@ const Plan = () => {
             </div>
           </div>
           <div className="inline-block relative">
-            <p className="text-primary font-medium text-sm">Save Up To 58%</p>
+            <p className="text-primary font-medium text-sm ">Save Up To 58%</p>
             <Icon
               icon="ph:arrow-bend-right-up"
               width="24"
               height="24"
-              className="absolute -top-3 -right-1.875"
+              className="absolute -top-3 -right-1.875 dark:text-white"
             />
           </div>
           <div className="grid grid-cols-12 pt-17 sm:gap-1.875 gap-y-1.875">

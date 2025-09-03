@@ -1,11 +1,11 @@
+import { Icon } from "@iconify/react";
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Icon } from "@iconify/react";
+import { useTheme } from "../../Theme/ThemeProvider";
 import Logo from "../Logo/Logo";
 import { headerData } from "./headerData";
 import HeaderLink from "./HeaderLink";
 import MobileHeaderLink from "./MobileHeaderLink";
-import { useTheme } from "../../Theme/ThemeProvider";
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -15,8 +15,7 @@ const Header: React.FC = () => {
   const [sticky, setSticky] = useState(false);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
-
+  const { toggleTheme } = useTheme();
   const signInRef = useRef<HTMLDivElement>(null);
   const signUpRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
@@ -75,7 +74,6 @@ const Header: React.FC = () => {
     setUser(null);
     navigate("/signin");
   };
-  console.log(theme, "theme");
   return (
     <header
       className={`fixed top-0 py-1 z-50 w-full bg-transparent transition-all ${
@@ -126,7 +124,7 @@ const Header: React.FC = () => {
                   className="rounded-full cursor-pointer"
                 />
                 <p className="absolute w-fit text-sm font-medium text-center z-10 invisible group-hover:visible transition-opacity duration-200 bg-primary text-white py-1 px-3 min-w-28 rounded-md shadow-2xl top-full left-1/2 transform -translate-x-1/2 mt-3">
-                  {user?.name}
+                  {user?.user}
                 </p>
               </div>
               <button
@@ -144,6 +142,7 @@ const Header: React.FC = () => {
               >
                 Sign In
               </Link>
+
               <Link
                 to="/signup"
                 className="hidden xl:block bg-primary text-white px-4 py-2 rounded-lg outline-none hover:bg-orange-600 border border-primary duration-500 text-base font-semibold"
@@ -182,12 +181,31 @@ const Header: React.FC = () => {
             onClick={() => setNavbarOpen(false)}
             aria-label="Close mobile menu"
           >
-            <Icon icon="ph:x-circle" width="24" height="24" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              className="text-midnight_text dark:text-white"
+            >
+              <path
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
           </button>
         </div>
         <nav className="flex flex-col items-start p-4">
           {headerData.map((item, index) => (
-            <MobileHeaderLink key={index} item={item} />
+            <MobileHeaderLink
+              key={index}
+              item={item}
+              setNavbarOpen={setNavbarOpen}
+            />
           ))}
           <div className="mt-4 flex gap-4 w-full">
             <Link
