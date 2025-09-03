@@ -2,14 +2,24 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import type { HeaderItem } from "../../types/menu";
 
-const MobileHeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
+interface MobileHeaderLinkProps {
+  item: HeaderItem;
+  setNavbarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const MobileHeaderLink: React.FC<MobileHeaderLinkProps> = ({
+  item,
+  setNavbarOpen,
+}) => {
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const location = useLocation();
 
   const handleToggle = (e: React.MouseEvent) => {
     if (item.submenu) {
-      e.preventDefault(); // prevent navigation when toggling submenu
+      e.preventDefault();
       setSubmenuOpen(!submenuOpen);
+    } else {
+      setNavbarOpen(false); // ✅ close drawer on normal item
     }
   };
 
@@ -19,7 +29,7 @@ const MobileHeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
     <div className="relative w-full">
       <Link
         to={item.href}
-        onClick={item.submenu ? handleToggle : undefined}
+        onClick={handleToggle}
         className={`flex items-center justify-between w-full py-2 text-black dark:text-white focus:outline-none
           ${item.href === path ? "!text-primary dark:!text-primary" : ""}
         `}
@@ -50,6 +60,7 @@ const MobileHeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
             <Link
               key={index}
               to={subItem.href}
+              onClick={() => setNavbarOpen(false)} // ✅ close drawer on submenu click
               className="block py-2 text-gray-500 hover:bg-gray-200"
             >
               {subItem.label}

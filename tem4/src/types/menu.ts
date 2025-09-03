@@ -7,4 +7,5 @@ export type HeaderItem = {
   label: string;
   href: string;
   submenu?: SubmenuItem[];
+  setNavbarOpen?: boolean;
 };
