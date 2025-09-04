@@ -1,0 +1,10 @@
+/* Change the bar color */
+#nprogress .bar {
+  background: #f9c78f !important; /* your color */
+}
+
+/* Optional: change the spinner color */
+#nprogress .spinner-icon {
+  border-top-color: #f9c78f !important;
+  border-left-color: #f9c78f !important;
+}
