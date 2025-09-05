@@ -1,40 +1,61 @@
+import { Link } from "react-router-dom";
+
 const ContactInfo = () => {
   return (
     <>
-      <section className="dark:bg-darkmode">
-        <div className="container mx-auto px-4">
-          <div className="flex md:flex-row flex-col items-stretch justify-center sm:gap-28 gap-8">
+      <section className="dark:bg-darkmode py-20">
+        <div className="container">
+          <div className="flex md:flex-row flex-col items-stretch justify-start sm:gap-28 gap-8">
             <div className="flex sm:flex-row flex-col items-start sm:gap-8 gap-4">
-              <div className="bg-primary/20 w-15 h-15 flex items-center justify-center rounded-full">
-                <i className="bg-[url('/images/contact-page/email.svg')] bg-no-repeat bg-contain w-8 h-8 inline-block"></i>
+              <div className="bg-primary/20 dark:bg-darklight w-14 h-14 flex items-center justify-center rounded-full">
+                <i className="bg-[url('/images/contact/email.svg')] bg-no-repeat bg-contain w-8 h-8 inline-block"></i>
               </div>
               <div>
-                <span className="text-midnight_text dark:text-white text-xl font-bold">
+                <span className="text-secondary dark:text-white text-xl font-bold">
                   Email Us
                 </span>
-                <p className="text-black/50 dark:text-white/50 font-normal text-lg max-w-80 pt-3 pb-7">
-                  Feel free to contact us at info@saascandy.com we’ll respond
-                  promptly
+                <p className="text-SlateBlue font-normal text-xl max-w-334 pt-3 pb-7 dark:text-darktext">
+                  Please feel free to drop us a line. We will respond as soon as
+                  possible.
                 </p>
+                <div>
+                  <Link
+                    to="#"
+                    className="text-primary text-lg font-medium flex items-center gap-3 group hover:text-secondary dark:hover:text-white"
+                  >
+                    Leave a message
+                    <i className="bg-[url('/images/contact/arrow.svg')] bg-no-repeat bg-contain inline-block w-6 h-4 group-hover:bg-[url('/images/contact/arrow-hover.svg')] dark:group-hover:bg-[url('/images/contact/arrow-hover-white.svg')]"></i>
+                  </Link>
+                </div>
               </div>
             </div>
             <div className="flex sm:flex-row flex-col items-start sm:gap-8 gap-4">
-              <div className="bg-primary/20 w-15 h-15 flex items-center justify-center rounded-full">
-                <i className="bg-[url('/images/contact-page/Career.svg')] bg-no-repeat bg-contain w-9 h-9 inline-block"></i>
+              <div className="bg-primary/20 dark:bg-darklight w-14 h-14 flex items-center justify-center rounded-full">
+                <i className="bg-[url('/images/contact/Career.svg')] bg-no-repeat bg-contain w-8 h-8 inline-block"></i>
               </div>
               <div className="flex flex-col h-full justify-between">
                 <div className="">
-                  <span className="text-midnight_text dark:text-white text-xl font-bold">
-                    Address
+                  <span className="text-secondary dark:text-white text-xl font-bold">
+                    Careers
                   </span>
-                  <p className="text-black/50 dark:text-white/50 font-normal text-lg max-w-80 pt-3 pb-7">
-                    221b Baker St, London NW1 6XE, United Kingdom
+                  <p className="text-SlateBlue font-normal text-xl max-w-334 pt-3 pb-7 dark:text-darktext">
+                    Sit ac ipsum leo lorem magna nunc mattis maecenas non
+                    vestibulum
                   </p>
+                </div>
+                <div>
+                  <Link
+                    to="#"
+                    className="text-primary text-lg font-medium flex items-center gap-3 group hover:text-secondary dark:hover:text-white"
+                  >
+                    Send an application
+                    <i className="bg-[url('/images/contact/arrow.svg')] bg-no-repeat bg-contain inline-block w-6 h-4 group-hover:bg-[url('/images/contact/arrow-hover.svg')] dark:group-hover:bg-[url('/images/contact/arrow-hover-white.svg')]"></i>
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
-          <div className="pt-11 md:pb-6.75 pb-8">
+          <div className="md:pt-32 pt-11 md:pb-28 pb-8">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2707.738549187617!2d77.5923704!3d12.9207136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae150995555555%3A0x440eaf1d21e4db01!2sAG%20Solutions!5e1!3m2!1sen!2sin!4v1756893439051!5m2!1sen!2sin"
               width="1114"
@@ -45,7 +66,7 @@ const ContactInfo = () => {
             ></iframe>
           </div>
         </div>
-        <div className="border-b border-solid border-border dark:border-darkborder"></div>
+        <div className="border-b border-solid border-BorderLine dark:border-dark_border"></div>
       </section>
     </>
   );

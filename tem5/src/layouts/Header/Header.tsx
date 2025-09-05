@@ -1,19 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-// import { headerData } from "../Header/Navigation/menuData";
-// import HeaderLink from "../Header/Navigation/HeaderLink";
-// import MobileHeaderLink from "../Header/Navigation/MobileHeaderLink";
-// import Signin from "@/components/Auth/SignIn";
-// import SignUp from "@/components/Auth/SignUp";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useTheme } from "../../Theme/ThemeProvider";
 import { headerData } from "./headerData";
 import HeaderLink from "./HeaderLink";
 import MobileHeaderLink from "./MobileHeaderLink";
-// import { SuccessfullLogin } from "@/components/Auth/AuthDialog/SuccessfulLogin";
-// import { FailedLogin } from "@/components/Auth/AuthDialog/FailedLogin";
-// import { UserRegistered } from "@/components/Auth/AuthDialog/UserRegistered";
-// import AuthDialogContext from "@/app/context/AuthDialogContext";
+import Signin from "../../component/Auth/Signin/Signin";
+import SignUp from "../../component/Auth/SignUp/SignUp";
 
 const Header: React.FC = () => {
   const { toggleTheme } = useTheme();
@@ -69,7 +62,6 @@ const Header: React.FC = () => {
       document.body.style.overflow = "";
     }
   }, [isSignInOpen, isSignUpOpen, navbarOpen]);
-
 
   return (
     <>
@@ -140,9 +132,9 @@ const Header: React.FC = () => {
                       className="text-2xl dark:text-white"
                     />
                   </button>
-                  {/* <Signin
+                  <Signin
                     signInOpen={(value: boolean) => setIsSignInOpen(value)}
-                  /> */}
+                  />
                 </div>
               </div>
             )}
@@ -172,14 +164,13 @@ const Header: React.FC = () => {
                       className="text-2xl dark:text-white"
                     />
                   </button>
-                  {/* <SignUp
+                  <SignUp
                     signUpOpen={(value: boolean) => setIsSignUpOpen(value)}
-                  /> */}
+                  />
                 </div>
               </div>
             )}
 
-            {/* Mobile Menu Button */}
             <button
               onClick={() => setNavbarOpen(!navbarOpen)}
               className="block lg:hidden p-2 rounded-lg"
@@ -249,6 +240,25 @@ const Header: React.FC = () => {
               >
                 Sign In
               </button>
+              {isSignInOpen && (
+                <div
+                  ref={signInRef}
+                  className="fixed ml-0! top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50"
+                >
+                  <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-lg bg-white px-8 py-14 text-center dark:bg-secondary">
+                    <button
+                      onClick={() => setIsSignInOpen(false)}
+                      className=" hover:bg-BorderLine dark:hover:bg-border p-1 rounded-full absolute -top-5 -right-3 mr-8 mt-8"
+                      aria-label="Close Sign In Modal"
+                    >
+                      <Icon
+                        icon="ic:round-close"
+                        className="text-2xl dark:text-white"
+                      />
+                    </button>
+                  </div>
+                </div>
+              )}
               <button
                 className="bg-LightApricot text-black px-4 py-2 rounded-lg hover:bg-black hover:text-white"
                 onClick={() => {
@@ -261,29 +271,6 @@ const Header: React.FC = () => {
             </div>
           </nav>
         </div>
-
-        {/* Alerts */}
-        {/* <div
-          className={`fixed top-6 end-1/2 translate-x-1/2 z-50 ${
-            authDialog?.isSuccessDialogOpen ? "block" : "hidden"
-          }`}
-        >
-          <SuccessfullLogin />
-        </div>
-        <div
-          className={`fixed top-6 end-1/2 translate-x-1/2 z-50 ${
-            authDialog?.isFailedDialogOpen ? "block" : "hidden"
-          }`}
-        >
-          <FailedLogin />
-        </div>
-        <div
-          className={`fixed top-6 end-1/2 translate-x-1/2 z-50 ${
-            authDialog?.isUserRegistered ? "block" : "hidden"
-          }`}
-        >
-          <UserRegistered />
-        </div> */}
       </header>
     </>
   );
