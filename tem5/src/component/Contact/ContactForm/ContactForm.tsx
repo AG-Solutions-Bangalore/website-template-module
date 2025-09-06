@@ -1,214 +1,134 @@
-import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    projectname: "",
-    email: "",
-    Project: "",
-    Message: "",
-  });
-  const [showThanks, setShowThanks] = useState(false);
-  const [loader, setLoader] = useState(false);
-  const [isFormValid, setIsFormValid] = useState(false);
-
-  useEffect(() => {
-    const isValid = Object.values(formData).every(
-      (value) => value.trim() !== ""
-    );
-    setIsFormValid(isValid);
-  }, [formData]);
-  const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-  const reset = () => {
-    formData.name = "";
-    formData.projectname = "";
-    formData.email = "";
-    formData.Project = "";
-    formData.Message = "";
-  };
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoader(true);
-
-    try {
-      //   const response = await fetch(
-      //     "https://formsubmit.co/ajax/bhainirav772@gmail.com",
-      //     {
-      //       method: "POST",
-      //       headers: { "Content-Type": "application/json" },
-      //       body: JSON.stringify({
-      //         Name: formData.name,
-      //         ProjectName: formData.projectname,
-      //         Email: formData.email,
-      //         Project: formData.Project,
-      //         Message: formData.Message,
-      //       }),
-      //     }
-      //   );
-
-      const data = true;
-
-      if (data) {
-        setShowThanks(true);
-        reset();
-
-        setTimeout(() => {
-          setShowThanks(false);
-        }, 5000);
-      } else {
-        console.warn("Form submission failed:", data);
-      }
-    } catch (error: any) {
-      console.error("Error submitting form:", error.message || error);
-    } finally {
-      setLoader(false);
-    }
-  };
-
   return (
-    <section className="dark:bg-darkmode pb-24 !pt-0">
-      <div className="container mx-auto lg:max-w-xl md:max-w-screen-md px-4">
-        <div className="grid md:grid-cols-12 grid-cols-1 gap-8">
-          <div className="col-span-6 md:pt-12 pt-0 relative">
-            <h2 className="max-w-72 text-[40px] leading-[3rem] font-bold mb-9">
-              Get A Quote
-            </h2>
-            <form
-              onSubmit={handleSubmit}
-              className="flex flex-wrap w-full m-auto justify-between"
-            >
-              <div className="sm:flex gap-3 w-full">
-                <div className="mx-0 my-2.5 flex-1">
-                  <label htmlFor="name" className="pb-3 inline-block text-base">
-                    User Name*
-                  </label>
-                  <input
-                    id="name"
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full text-base px-4 rounded-lg py-2.5 border-border border-solid dark:border-darkborder dark:text-white dark:bg-transparent border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  />
+    <>
+      <section className="dark:bg-darkmode pt-0 md:pb-24 pb-10">
+        <div className="container">
+          <div className="grid lg:grid-cols-12 grid-cols-1 md:gap-20 gap-10">
+            <div className="md:col-span-6 col-span-1">
+              <h2 className="max-w-277 sm:text-[40px] sm:leading-[3rem] text-[28px] leading-[2.25rem] font-bold text-secondary dark:text-white mb-9">
+                Get Online Consultation
+              </h2>
+              <form className="flex flex-wrap w-full m-auto justify-between">
+                <div className="sm:flex gap-3 w-full">
+                  <div className="mx-0 my-2.5 flex-1">
+                    <label
+                      htmlFor="first-name"
+                      className="pb-3 inline-block text-base text-SlateBlue dark:text-darktext"
+                    >
+                      First Name*
+                    </label>
+                    <input
+                      id="first-name"
+                      className="w-full text-base px-4 rounded-lg py-2.5 border-BorderLine dark:border-dark_border border-solid dark:text-white  dark:bg-darkmode border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:border-solid focus:outline-0"
+                      type="text"
+                    />
+                  </div>
+                  <div className="mx-0 my-2.5 flex-1">
+                    <label
+                      htmlFor="last-name"
+                      className="pb-3 inline-block text-base text-SlateBlue dark:text-darktext"
+                    >
+                      Last Name*
+                    </label>
+                    <input
+                      id="last-name"
+                      className="w-full text-base px-4 py-2.5 rounded-lg border-BorderLine dark:border-dark_border border-solid dark:text-white  dark:bg-darkmode border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:border-solid focus:outline-0"
+                      type="text"
+                    />
+                  </div>
                 </div>
-                <div className="mx-0 my-2.5 flex-1">
-                  <label
-                    htmlFor="projectname"
-                    className="pb-3 inline-block text-base"
-                  >
-                    Project Name*
-                  </label>
-                  <input
-                    id="projectname"
-                    type="text"
-                    name="projectname"
-                    value={formData.projectname}
-                    onChange={handleChange}
-                    className="w-full text-base px-4 py-2.5 rounded-lg border-border dark:border-darkborder border-solid dark:text-white  dark:bg-transparent border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  />
+                <div className="sm:flex gap-3 w-full">
+                  <div className="mx-0 my-2.5 flex-1">
+                    <label
+                      htmlFor="email"
+                      className="pb-3 inline-block text-base text-SlateBlue dark:text-darktext"
+                    >
+                      Email address*
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      className="w-full text-base px-4 py-2.5 rounded-lg border-BorderLine dark:border-dark_border border-solid dark:text-white  dark:bg-darkmode border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:border-solid focus:outline-0"
+                    />
+                  </div>
+                  <div className="mx-0 my-2.5 flex-1">
+                    <label
+                      htmlFor="Specialist"
+                      className="pb-3 inline-block text-base text-SlateBlue dark:text-darktext"
+                    >
+                      Specialist*
+                    </label>
+                    <select
+                      id="Specialist"
+                      className="w-full text-base px-4 py-2.5 rounded-lg border-BorderLine dark:text-white border-solid dark:bg-darkmode border transition-all duration-500 focus:border-primary dark:focus:border-primary dark:border-dark_border focus:border-solid focus:outline-0"
+                    >
+                      <option value="">Choose a specialist</option>
+                      <option value="Baking &amp; Pastry">
+                        Choose a specialist
+                      </option>
+                      <option value="Exotic Cuisine">Exotic Cuisine</option>
+                      <option value="French Desserts">French Desserts</option>
+                      <option value="Seafood &amp; Wine">
+                        Choose a specialist
+                      </option>
+                    </select>
+                  </div>
                 </div>
-              </div>
-              <div className="sm:flex gap-3 w-full">
-                <div className="mx-0 my-2.5 flex-1">
-                  <label
-                    htmlFor="email"
-                    className="pb-3 inline-block text-base"
-                  >
-                    Email address*
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full text-base px-4 py-2.5 rounded-lg border-border dark:border-darkborder border-solid dark:text-white  dark:bg-transparent border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  />
+                <div className="sm:flex gap-3 w-full">
+                  <div className="mx-0 my-2.5 flex-1">
+                    <label
+                      htmlFor="date"
+                      className="pb-3 inline-block text-base text-SlateBlue dark:text-darktext"
+                    >
+                      Date*
+                    </label>
+                    <input
+                      id="date"
+                      className="w-full text-base px-4 rounded-lg  py-2.5 outline-hidden dark:text-white dark:bg-darkmode border-BorderLine border-solid border transition-all duration-500 focus:border-primary dark:focus:border-primary dark:border-dark_border focus:border-solid focus:outline-0"
+                      type="date"
+                    />
+                  </div>
+                  <div className="mx-0 my-2.5 flex-1">
+                    <label
+                      htmlFor="time"
+                      className="pb-3 inline-block text-base text-SlateBlue dark:text-darktext"
+                    >
+                      Time*
+                    </label>
+                    <input
+                      id="time"
+                      className="w-full text-base px-4 rounded-lg py-2.5 border-BorderLine outline-hidden dark:text-white dark:bg-darkmode border-solid border transition-all duration-500 focus:border-primary dark:focus:border-primary dark:border-dark_border focus:border-solid focus:outline-0"
+                      type="time"
+                    />
+                  </div>
                 </div>
-                <div className="mx-0 my-2.5 flex-1">
-                  <label
-                    htmlFor="Project"
-                    className="pb-3 inline-block text-base"
+                <div className="mx-0 my-2.5 w-full">
+                  <Link
+                    to="#"
+                    className="bg-primary rounded-lg text-white py-4 px-8 mt-4 inline-block hover:bg-blue-700"
+                    type="submit"
                   >
-                    Project*
-                  </label>
-                  <select
-                    name="Project"
-                    id="Project"
-                    value={formData.Project}
-                    onChange={handleChange}
-                    className="w-full text-base px-4 py-2.5 rounded-lg border-border dark:text-white border-solid dark:bg-transparent border transition-all duration-500 focus:border-primary dark:focus:border-primary dark:border-darkborder focus:outline-0"
-                  >
-                    <option value="">Choose the type of app</option>
-                    <option value="EdTech App">EdTech App</option>
-                    <option value="eCommerce Apps">eCommerce Apps</option>
-                    <option value="CRM Apps">CRM Apps</option>
-                    <option value="Health Apps">Health Apps</option>
-                    <option value="Web Analytics Apps">
-                      Web Analytics Apps
-                    </option>
-                    <option value="Banking Apps">Banking Apps</option>
-                  </select>
+                    Make an appointment
+                  </Link>
                 </div>
-              </div>
-              <div className="w-full">
-                <label
-                  htmlFor="password"
-                  className="text-base inline-block pb-4"
-                >
-                  Message
-                </label>
-                <textarea
-                  id="Message"
-                  name="Message"
-                  value={formData.Message}
-                  onChange={handleChange}
-                  className="border border-border px-4 py-2 focus:outline-hidden bg-white dark:bg-darkmode dark:border-border_color rounded-lg dark:focus:border-primary focus:border-primary"
-                  placeholder="Anything else you wanna communicate"
-                ></textarea>
-              </div>
-              <div className="mx-0 my-2.5 w-full">
-                <button
-                  type="submit"
-                  disabled={!isFormValid || loader}
-                  className={`border leading-none px-6 text-lg font-medium py-4 rounded-lg 
-                    ${
-                      !isFormValid || loader
-                        ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                        : "bg-primary border-primary text-white hover:bg-transparent hover:text-primary cursor-pointer"
-                    }`}
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
-            {showThanks && (
-              <div className="text-white bg-green-400 rounded-full px-4 text-lg mb-4.5 mt-2 absolute flex items-center gap-2">
-                Request submitted successfully. Thank you.
-                <div className="w-3 h-3 rounded-full animate-spin border-2 border-solid border-white border-t-transparent"></div>
-              </div>
-            )}
-          </div>
-          <div className="col-span-6">
-            <img
-              src="/images/contact-page/contact.webp"
-              alt="Contact"
-              width={1300}
-              height={0}
-              //   quality={100}
-              style={{ width: "100%", height: "auto" }}
-              className="rounded-lg"
-            />
+              </form>
+            </div>
+            <div className="sm:col-span-6 col-span-1">
+              <img
+                src="/images/contact/contact.jpg"
+                alt="Contact"
+                width={0}
+                height={0}
+                sizes="100vh"
+                className="bg-no-repeat bg-contain rounded-lg w-526 h-650"
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

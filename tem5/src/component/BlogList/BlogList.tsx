@@ -1,43 +1,32 @@
-import { format } from "date-fns";
-import { Link } from "react-router-dom";
-import type { Blog } from "../../types/blog";
+import React from "react";
+import { getAllPosts } from "../../../utils/markdown";
+import BlogCard from "../../Pages/Blog/BlogCard";
 
-const BlogList = ({ blog }: { blog: Blog }) => {
-  const { title, coverImage,  date, slug } = blog;
-  console.log(blog, "blog");
+const BlogList: React.FC = () => {
+  const posts = getAllPosts(["title", "date", "excerpt", "coverImage", "slug"]);
+
   return (
-    <div className="group mb-10 relative">
-      <div className="mb-8 overflow-hidden rounded">
-        <Link
-          to={`/blogs/${slug}`}
-          aria-label="blog cover"
-          className="block h-72"
-        >
-          <img
-            src={coverImage!}
-            alt="image"
-            className="w-full transition group-hover:scale-125 h-full"
-            width={408}
-            height={272}
-            // layout="responsive"
-            // quality={100}
-          />
-        </Link>
+    <section
+      className="flex flex-wrap justify-center dark:bg-darkmode py-20"
+      id="blog"
+    >
+      <div className="container">
+        <div className="grid grid-cols-12 gap-7">
+          {posts.map((blog, i) => (
+            <div
+              key={i}
+              className="w-full lg:col-span-4 md:col-span-6 col-span-12"
+              data-aos="fade-up"
+              data-aos-delay="200"
+              data-aos-duration="1000"
+            >
+              <BlogCard blog={blog} />
+            </div>
+          ))}
+        </div>
       </div>
-      <div>
-        <h3>
-          <Link
-            to={`/blogs/${slug}`}
-            className="mb-4 inline-block font-semibold text-dark group-hover:text-primary dark:text-white dark:group-hover:text-primary text-xl"
-          >
-            {title}
-          </Link>
-        </h3>
-        <span className="text-xs font-semibold leading-loose text-black/50 dark:text-white/50">
-          {format(new Date(date), "dd MMM yyyy")}
-        </span>
-      </div>
-    </div>
+    </section>
   );
 };
+
 export default BlogList;

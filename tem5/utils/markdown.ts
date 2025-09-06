@@ -7,6 +7,7 @@ function parseFrontmatter(content: string) {
   const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
   const match = content.match(frontmatterRegex);
 
+  
   if (!match) {
     return { data: {}, content };
   }
